@@ -23,7 +23,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-  const res = await fetchData('/api/users', {
+  const res = await fetchData('https://notes-api-l2f7.onrender.com/api/users', {
     method: 'GET',
   });
   return res.json();
@@ -36,14 +36,17 @@ export type SignupCredentials = {
 };
 
 export async function signup(credentials: SignupCredentials): Promise<User> {
-  const res = await fetchData('/api/users/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  const res = await fetchData(
+    'https://notes-api-l2f7.onrender.com/api/users/signup',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-    body: JSON.stringify(credentials),
-  });
+      body: JSON.stringify(credentials),
+    }
+  );
   return res.json();
 }
 
@@ -53,25 +56,28 @@ export type LoginCredentials = {
 };
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-  const res = await fetchData('/api/users/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  const res = await fetchData(
+    'https://notes-api-l2f7.onrender.com/api/users/login',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-    body: JSON.stringify(credentials),
-  });
+      body: JSON.stringify(credentials),
+    }
+  );
   return res.json();
 }
 
 export async function logout() {
-  await fetchData('/api/users/logout', {
+  await fetchData('https://notes-api-l2f7.onrender.com/api/users/logout', {
     method: 'POST',
   });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
-  const res = await fetchData('/api/notes', {
+  const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
     method: 'GET',
   });
   return res.json();
@@ -83,7 +89,7 @@ export type NoteInput = {
 };
 
 export async function createNote(note: NoteInput): Promise<Note> {
-  const res = await fetchData('/api/notes', {
+  const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -99,20 +105,23 @@ export async function updateNote(
   noteId: string,
   note: NoteInput
 ): Promise<Note> {
-  const res = await fetchData(`/api/notes/${noteId}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  const res = await fetchData(
+    `https://notes-api-l2f7.onrender.com/api/notes/${noteId}`,
+    {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-    body: JSON.stringify(note),
-  });
+      body: JSON.stringify(note),
+    }
+  );
 
   return res.json();
 }
 
 export async function deleteNote(noteId: string) {
-  await fetchData(`/api/notes/${noteId}`, {
+  await fetchData(`https://notes-api-l2f7.onrender.com/api/notes/${noteId}`, {
     method: 'DELETE',
   });
 }
