@@ -25,12 +25,6 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 export async function getLoggedInUser(): Promise<User> {
   const res = await fetchData('https://notes-api-l2f7.onrender.com/api/users', {
     method: 'GET',
-    headers: {
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
-    },
   });
   return res.json();
 }
@@ -47,11 +41,9 @@ export async function signup(credentials: SignupCredentials): Promise<User> {
     {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
       },
+
       body: JSON.stringify(credentials),
     }
   );
@@ -69,10 +61,10 @@ export async function login(credentials: LoginCredentials): Promise<User> {
     {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
+        'Access-Control-Allow-Origin': 'https://notes-client-7tvq.onrender.com',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
       body: JSON.stringify(credentials),
     }
@@ -83,24 +75,12 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 export async function logout() {
   await fetchData('https://notes-api-l2f7.onrender.com/api/users/logout', {
     method: 'POST',
-    headers: {
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
-    },
   });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
   const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
     method: 'GET',
-    headers: {
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
-    },
   });
   return res.json();
 }
@@ -114,11 +94,9 @@ export async function createNote(note: NoteInput): Promise<Note> {
   const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
     method: 'POST',
     headers: {
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
     },
+
     body: JSON.stringify(note),
   });
 
@@ -134,11 +112,9 @@ export async function updateNote(
     {
       method: 'PATCH',
       headers: {
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
       },
+
       body: JSON.stringify(note),
     }
   );
@@ -149,11 +125,5 @@ export async function updateNote(
 export async function deleteNote(noteId: string) {
   await fetchData(`https://notes-api-l2f7.onrender.com/api/notes/${noteId}`, {
     method: 'DELETE',
-    headers: {
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
-    },
   });
 }
