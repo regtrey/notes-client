@@ -26,8 +26,9 @@ export async function getLoggedInUser(): Promise<User> {
   const res = await fetchData('https://notes-api-l2f7.onrender.com/api/users', {
     method: 'GET',
     headers: {
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
     },
   });
@@ -46,7 +47,7 @@ export async function signup(credentials: SignupCredentials): Promise<User> {
     {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
@@ -68,7 +69,7 @@ export async function login(credentials: LoginCredentials): Promise<User> {
     {
       method: 'POST',
       headers: {
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
@@ -83,8 +84,9 @@ export async function logout() {
   await fetchData('https://notes-api-l2f7.onrender.com/api/users/logout', {
     method: 'POST',
     headers: {
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
     },
   });
@@ -94,8 +96,9 @@ export async function fetchNotes(): Promise<Note[]> {
   const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
     method: 'GET',
     headers: {
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
     },
   });
@@ -111,7 +114,7 @@ export async function createNote(note: NoteInput): Promise<Note> {
   const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
     method: 'POST',
     headers: {
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
@@ -131,7 +134,7 @@ export async function updateNote(
     {
       method: 'PATCH',
       headers: {
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
@@ -147,8 +150,9 @@ export async function deleteNote(noteId: string) {
   await fetchData(`https://notes-api-l2f7.onrender.com/api/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
     },
   });
