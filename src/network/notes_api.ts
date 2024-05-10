@@ -23,9 +23,12 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-  const res = await fetchData('https://notes-api-l2f7.onrender.com/api/users', {
-    method: 'GET',
-  });
+  const res = await fetchData(
+    'https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/users',
+    {
+      method: 'GET',
+    }
+  );
   return res.json();
 }
 
@@ -37,7 +40,7 @@ export type SignupCredentials = {
 
 export async function signup(credentials: SignupCredentials): Promise<User> {
   const res = await fetchData(
-    'https://notes-api-l2f7.onrender.com/api/users/signup',
+    'https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/users/signup',
     {
       method: 'POST',
       headers: {
@@ -57,14 +60,11 @@ export type LoginCredentials = {
 
 export async function login(credentials: LoginCredentials): Promise<User> {
   const res = await fetchData(
-    'https://notes-api-l2f7.onrender.com/api/users/login',
+    'https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/users/login',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://notes-client-7tvq.onrender.com',
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
       body: JSON.stringify(credentials),
     }
@@ -73,15 +73,21 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 }
 
 export async function logout() {
-  await fetchData('https://notes-api-l2f7.onrender.com/api/users/logout', {
-    method: 'POST',
-  });
+  await fetchData(
+    'https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/users/logout',
+    {
+      method: 'POST',
+    }
+  );
 }
 
 export async function fetchNotes(): Promise<Note[]> {
-  const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
-    method: 'GET',
-  });
+  const res = await fetchData(
+    'https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/notes',
+    {
+      method: 'GET',
+    }
+  );
   return res.json();
 }
 
@@ -91,14 +97,17 @@ export type NoteInput = {
 };
 
 export async function createNote(note: NoteInput): Promise<Note> {
-  const res = await fetchData('https://notes-api-l2f7.onrender.com/api/notes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  const res = await fetchData(
+    'https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/notes',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-    body: JSON.stringify(note),
-  });
+      body: JSON.stringify(note),
+    }
+  );
 
   return res.json();
 }
@@ -108,7 +117,7 @@ export async function updateNote(
   note: NoteInput
 ): Promise<Note> {
   const res = await fetchData(
-    `https://notes-api-l2f7.onrender.com/api/notes/${noteId}`,
+    `https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/notes/${noteId}`,
     {
       method: 'PATCH',
       headers: {
@@ -123,7 +132,10 @@ export async function updateNote(
 }
 
 export async function deleteNote(noteId: string) {
-  await fetchData(`https://notes-api-l2f7.onrender.com/api/notes/${noteId}`, {
-    method: 'DELETE',
-  });
+  await fetchData(
+    `https://cors-anywhere.herokuapp.com/https://notes-api-l2f7.onrender.com/api/notes/${noteId}`,
+    {
+      method: 'DELETE',
+    }
+  );
 }
