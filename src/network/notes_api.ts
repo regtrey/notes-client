@@ -64,6 +64,7 @@ export async function login(credentials: LoginCredentials): Promise<User> {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
+      'Access-Control-Allow-Methods': 'POST',
     },
     body: JSON.stringify(credentials),
   });
