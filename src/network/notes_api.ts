@@ -23,7 +23,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-  const res = await fetchData('https://notes-mern-api.vercel.app/api/users', {
+  const res = await fetchData('/api/users', {
     method: 'GET',
     headers: {
       'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
