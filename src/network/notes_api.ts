@@ -24,7 +24,6 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 
 export async function getLoggedInUser(): Promise<User> {
   const res = await fetchData('https://notes-mern-api.vercel.app//api/users', {
-    mode: 'no-cors',
     method: 'GET',
   });
   return res.json();
@@ -40,7 +39,6 @@ export async function signup(credentials: SignupCredentials): Promise<User> {
   const res = await fetchData(
     'https://notes-mern-api.vercel.app//api/users/signup',
     {
-      mode: 'no-cors',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +59,6 @@ export async function login(credentials: LoginCredentials): Promise<User> {
   const res = await fetchData(
     'https://notes-mern-api.vercel.app//api/users/login',
     {
-      mode: 'no-cors',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,14 +71,12 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 
 export async function logout() {
   await fetchData('https://notes-mern-api.vercel.app//api/users/logout', {
-    mode: 'no-cors',
     method: 'POST',
   });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
   const res = await fetchData('https://notes-mern-api.vercel.app//api/notes', {
-    mode: 'no-cors',
     method: 'GET',
   });
   return res.json();
@@ -94,7 +89,6 @@ export type NoteInput = {
 
 export async function createNote(note: NoteInput): Promise<Note> {
   const res = await fetchData('https://notes-mern-api.vercel.app//api/notes', {
-    mode: 'no-cors',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -113,7 +107,6 @@ export async function updateNote(
   const res = await fetchData(
     `https://notes-mern-api.vercel.app//api/notes/${noteId}`,
     {
-      mode: 'no-cors',
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -128,7 +121,6 @@ export async function updateNote(
 
 export async function deleteNote(noteId: string) {
   await fetchData(`https://notes-mern-api.vercel.app//api/notes/${noteId}`, {
-    mode: 'no-cors',
     method: 'DELETE',
   });
 }
