@@ -25,9 +25,6 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 export async function getLoggedInUser(): Promise<User> {
   const res = await fetchData('https://notes-mern-api.vercel.app/api/users', {
     method: 'GET',
-    headers: {
-      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
-    },
   });
   return res.json();
 }
@@ -65,9 +62,6 @@ export async function login(credentials: LoginCredentials): Promise<User> {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'Content-Type',
       },
       body: JSON.stringify(credentials),
     }
@@ -84,9 +78,6 @@ export async function logout() {
 export async function fetchNotes(): Promise<Note[]> {
   const res = await fetchData('https://notes-mern-api.vercel.app/api/notes', {
     method: 'GET',
-    headers: {
-      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
-    },
   });
   return res.json();
 }
