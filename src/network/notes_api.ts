@@ -25,6 +25,9 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 export async function getLoggedInUser(): Promise<User> {
   const res = await fetchData('https://notes-mern-api.vercel.app/api/users', {
     method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
+    },
   });
   return res.json();
 }
@@ -41,6 +44,7 @@ export async function signup(credentials: SignupCredentials): Promise<User> {
     {
       method: 'POST',
       headers: {
+        'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
         'Content-Type': 'application/json',
       },
 
@@ -61,6 +65,7 @@ export async function login(credentials: LoginCredentials): Promise<User> {
     {
       method: 'POST',
       headers: {
+        'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(credentials),
@@ -72,12 +77,18 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 export async function logout() {
   await fetchData('https://notes-mern-api.vercel.app/api/users/logout', {
     method: 'POST',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
+    },
   });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
   const res = await fetchData('https://notes-mern-api.vercel.app/api/notes', {
     method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
+    },
   });
   return res.json();
 }
@@ -91,6 +102,7 @@ export async function createNote(note: NoteInput): Promise<Note> {
   const res = await fetchData('https://notes-mern-api.vercel.app/api/notes', {
     method: 'POST',
     headers: {
+      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
       'Content-Type': 'application/json',
     },
 
@@ -109,6 +121,7 @@ export async function updateNote(
     {
       method: 'PATCH',
       headers: {
+        'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
         'Content-Type': 'application/json',
       },
 
@@ -122,5 +135,8 @@ export async function updateNote(
 export async function deleteNote(noteId: string) {
   await fetchData(`https://notes-mern-api.vercel.app/api/notes/${noteId}`, {
     method: 'DELETE',
+    headers: {
+      'Access-Control-Allow-Origin': 'https://notes-mern-client.vercel.app',
+    },
   });
 }
